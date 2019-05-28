@@ -1,0 +1,84 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-12-19, 19:29:07
+    Author     : JasonLin
+*/
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: #f7fafc;
+}
+h1{
+    color: #0F88EB;
+    text-align: center;
+    margin: 30px 0 50px;
+}
+.content{
+    width: 960px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+table{
+    width: 960px;
+    margin: 0 auto;
+    border:1px solid #333;
+    border-collapse: collapse;
+    background: white;
+    position: relative;
+    box-shadow: 1px 1px 50px rgba(1,1,1,0.3);
+}
+tr:hover{
+    background: #f2f2f2;
+}
+th{
+    background: #f2f2f2;
+    font-size: 18px;
+}
+th,td{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border:1px solid #333;
+}
+.content a,button{
+    outline: 0;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    color: #FF0000;
+    background: none;
+    text-decoration: underline;
+    text-shadow:none;
+    box-shadow: none;
+}
+button{
+    font-size: 17px;
+}
+.top_option{
+    position: absolute;
+    right: 0;
+    top: -33px;
+}
+.top_option a{
+    display: inline-block;
+    width: 50px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #333;
+    background: #f2f2f2;
+    text-decoration: none;
+    text-align: center;
+}
+.top_option a:hover{
+    background: white;
+}
+.edit{
+}
+.del{
+}
