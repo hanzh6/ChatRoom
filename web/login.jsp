@@ -51,8 +51,8 @@
                 <a href="#" class="md-trigger" data-modal="modal-1">注册新用户</a>
                 <!--<a href="#" class="unable-login">忘记密码？</a>-->
             </div>
-            <p style="display: none;" id="login_feedback"><%=login_feedback%></p>
-	</div>
+            <p style="display: none;" id="login_feedback"><%=login_feedback %><%session.setAttribute("login_feedback",""); %></p>
+		</div>
         <div class="md-modal md-effect-1" id="modal-1">
             <div class="md-content">
                 <h3>注册新用户</h3>
@@ -73,7 +73,7 @@
                     </div>
                 </form>
             </div>
-	</div>
+		</div>
         <div class="md-overlay"></div>
 	<canvas id="Mycanvas" style="z-index: -1;position:absolute;top: 0;width: 100%;height: 100%;"></canvas>
 	<script src="./js/jquery.min.js"></script>

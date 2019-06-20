@@ -26,6 +26,9 @@
                 </tr>
             <%
                 request.setCharacterEncoding("UTF-8");
+            	String verify = request.getParameter("verify") ;    
+            	if(verify==null)
+                    response.sendRedirect("login.jsp");
                 String manage_op_feedback=(String)session.getAttribute("manage_op_feedback");
                 Connection conn=null;
                 ResultSet sqlRst=null;

@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" errorPage="error.jsp"%>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
@@ -23,6 +23,7 @@
             String Name=new String();
 //            String userid=new String();
             String first="1";
+            boolean hasLog=false;
             if(request.getParameter("username")!=null){
                 Name=request.getParameter("username");
                 String pass=request.getParameter("password");
@@ -40,7 +41,7 @@
                             response.sendRedirect("login.jsp");
                         }else if(identity.equals("admin")){
                             session.setAttribute("login_feedback","");
-                            response.sendRedirect("manage.jsp");
+                            response.sendRedirect("manage.jsp?verify=ok");
                         }else{
                             session.setAttribute("login_feedback","");
 //                            userid=new String(sqlRst.getString("password"));
@@ -58,9 +59,14 @@
                 first="1";
             }else{
                 Name=(String)session.getAttribute("cur_name");
+                if(Name == null){
+                    response.sendRedirect("login.jsp");
+                    return ;
+                }
                 first="0";
             }
-            boolean hasLog=false;
+            if(session.getAttribute("haslog") == "true")
+            	hasLog = true ;
             ArrayList names=(ArrayList)session.getAttribute("lognames");
             if(names==null){
                 names=new ArrayList();
@@ -70,7 +76,7 @@
             }else{
                 for(int i=0;i<names.size();i++){
                     String temp=(String)names.get(i);
-                    if(temp.equals(Name)){
+                    if(Name.equals(temp)){
                         promt="您已经登录过了！";
                         hasLog=true;
                         break;
@@ -111,32 +117,12 @@
                             <button type="reset">重置</button>
                         </div>
                     </form>
-                    <form method="post" action="UploadServlet" enctype="multipart/form-data style="width:300px;height:2em ;margin-bottom:-30px;position:relative; top:-30px; z-index:100;">
+                    <form name="fileupload" action="fileupload.jsp" method="POST" enctype="multipart/form-data" style="width:300px;height:2em ;margin-bottom:-30px;position:relative; top:-30px; z-index:100;">
                         <input type="text" style="display: none;" value="<%=Name%>" name="username">
 						<div>
 							<input type="file" name="file" size=24 style="float:left; width:180px; vertical-align:middle;">
 							<button type="submit" name="submit" style="float:left;" >上传</button>
 						</div>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 					</form>
                 </div>
                 <div class="member">

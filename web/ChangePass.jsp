@@ -27,11 +27,13 @@
                     session.setAttribute("cur_name",Name);
                     if(uu==0){
                         session.setAttribute("change_feedback","修改密码失败，原密码错误！");
+                        session.setAttribute("haslog", "true") ;
                         response.sendRedirect("ChatRoom.jsp");
                     }else{
                         session.setAttribute("change_feedback","");
                         session.setAttribute("login_feedback","修改成功，请重新登录！");
-                        response.sendRedirect("login.jsp");
+                        session.setAttribute("haslog", "false") ;
+                        response.sendRedirect("out.jsp?username="+Name);
                     }
                 }catch(java.sql.SQLException e){
                     out.println(e.toString());
