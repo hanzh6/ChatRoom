@@ -1,9 +1,3 @@
-<%-- 
-    Document   : changeinfo
-    Created on : 2017-12-19, 20:55:52
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
@@ -24,7 +18,7 @@
                 String username=request.getParameter("username");
                 String password=request.getParameter("password");
                 try{
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost/javaee","root","971230");
+                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
                     preparedStmt=conn.prepareStatement("update login set username=?,password=? where id=?");
                     preparedStmt.setString(1,username);
                     preparedStmt.setString(2,password);

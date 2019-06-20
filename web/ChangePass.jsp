@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ChangePass
-    Created on : 2017-12-19, 16:35:01
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
@@ -24,7 +18,7 @@
                 String old_password=request.getParameter("old_password");
                 String new_password=request.getParameter("new_password");
                 try{
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost/javaee","root","971230");
+                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
                     preparedStmt=conn.prepareStatement("update login set password=? where username=? and password=?");
                     preparedStmt.setString(1,new_password);
                     preparedStmt.setString(2,Name);

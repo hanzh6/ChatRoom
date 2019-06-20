@@ -1,9 +1,3 @@
-<%-- 
-    Document   : query
-    Created on : 2017-12-20, 12:57:28
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
@@ -38,7 +32,7 @@
             String username=request.getParameter("username");
             String userpass=request.getParameter("password");
             try{
-                conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost/javaee","root","971230");
+                conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
                 StringBuilder sql=new StringBuilder("select * from login where 1=1");
                 if(!userid.isEmpty()){
 			sql.append(" and id like '%"+userid+"%' ");

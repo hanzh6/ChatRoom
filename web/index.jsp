@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 2017-12-11, 10:28:34
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

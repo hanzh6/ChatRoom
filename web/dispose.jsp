@@ -1,9 +1,3 @@
-<%-- 
-    Document   : dispose
-    Created on : 2017-12-19, 15:28:42
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
@@ -23,7 +17,7 @@
             if(request.getParameter("username")!=null){
                 Name=request.getParameter("username");
                 try{
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost/javaee","root","971230");
+                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
                     preparedStmt=conn.prepareStatement("delete from login where username=?");
                     preparedStmt.setString(1,Name);
                     int uu=preparedStmt.executeUpdate();

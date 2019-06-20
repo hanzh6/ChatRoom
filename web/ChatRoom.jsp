@@ -1,10 +1,4 @@
-<%-- 
-    Document   : ChatRoom
-    Created on : 2017-12-10, 14:47:59
-    Author     : JasonLin
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
@@ -35,7 +29,7 @@
                 String identity=request.getParameter("identity");
                 try{
                 	Class.forName("com.mysql.jdbc.Driver");
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:53306/16337074_chat","user","123");
+                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
                     preparedStmt=conn.prepareStatement("select username,password,identity from login where username=? and identity=?");
                     preparedStmt.setString(1,Name);
                     preparedStmt.setString(2,identity);
@@ -117,6 +111,33 @@
                             <button type="reset">重置</button>
                         </div>
                     </form>
+                    <form method="post" action="UploadServlet" enctype="multipart/form-data style="width:300px;height:2em ;margin-bottom:-30px;position:relative; top:-30px; z-index:100;">
+                        <input type="text" style="display: none;" value="<%=Name%>" name="username">
+						<div>
+							<input type="file" name="file" size=24 style="float:left; width:180px; vertical-align:middle;">
+							<button type="submit" name="submit" style="float:left;" >上传</button>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					</form>
                 </div>
                 <div class="member">
                     <h4 style="font-size:15px;font-weight:400;">当前在线人数：<%=names.size()%></h4>
@@ -140,7 +161,6 @@
                     <button type="submit" id="out">退出并销毁</button>
                 </form>
             </div>
-            <p class="copy fadeIn animated">Copyright © 2017.JasonLin</p>
         </div>
         <div class="md-modal md-effect-1" id="modal-1">
             <div class="md-content">

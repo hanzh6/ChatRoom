@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 2017-12-10, 14:47:44
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -57,7 +51,6 @@
                 <a href="#" class="md-trigger" data-modal="modal-1">注册新用户</a>
                 <!--<a href="#" class="unable-login">忘记密码？</a>-->
             </div>
-            <p class="copy fadeIn animated">Copyright © 2017.JasonLin</p>
             <p style="display: none;" id="login_feedback"><%=login_feedback%></p>
 	</div>
         <div class="md-modal md-effect-1" id="modal-1">

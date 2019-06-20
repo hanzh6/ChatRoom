@@ -1,9 +1,3 @@
-<%-- 
-    Document   : NewUser
-    Created on : 2017-12-19, 17:47:07
-    Author     : JasonLin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
@@ -24,10 +18,12 @@
                 Name=request.getParameter("username");
                 String password=request.getParameter("password");
                 try{
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost/javaee","root","971230");
-                    preparedStmt=conn.prepareStatement("insert into login(username,password)value(?,?)");
-                    preparedStmt.setString(1,Name);
-                    preparedStmt.setString(2,password);
+                	Class.forName("com.mysql.jdbc.Driver");
+                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                    preparedStmt=conn.prepareStatement("insert into login(identity,username,password)value(?,?,?)");
+                    preparedStmt.setString(1,"staff");
+                    preparedStmt.setString(2,Name);
+                    preparedStmt.setString(3,password);
                     int uu=preparedStmt.executeUpdate();
                     session.setAttribute("cur_name",Name);
                     if(uu==0){
