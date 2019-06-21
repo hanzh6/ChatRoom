@@ -64,3 +64,6 @@ String verify = request.getParameter("verify") ;
 
 更新了changeinfo.jsp以及ChatRoom.jsp的内容，现在可以更新用户信息
 
+——————————————v6———————————————— 
+
+更新了changeinfo.jsp, ChatRoom.jsp, LoginServlet.java的内容，现在可以显示用户头像
