@@ -66,4 +66,4 @@ String verify = request.getParameter("verify") ;
 
 ——————————————v6———————————————— 
 
-更新了changeinfo.jsp, ChatRoom.jsp, LoginServlet.java的内容，现在可以显示用户头像
+更新了changeinfo.jsp, ChatRoom.jsp, LoginServlet.java的内容，现在可以显示用户头像，ChatRoom.jsp的17行的String Name = (String) request.getAttribute("username");改为String Name = (String) request.getParameter("username");
