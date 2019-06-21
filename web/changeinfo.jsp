@@ -48,8 +48,13 @@
 	    				//如果是文件
 	    				DiskFileItem dfi = (DiskFileItem) fi;
 	    				if (!dfi.getName().trim().equals("")) {//getName()返回文件名称或空串
-	    					String fileName=application.getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
+	    					String fileName=application.getRealPath("/file/");
+	    					if (!(new java.io.File(fileName).isDirectory())){
+	    						new java.io.File(fileName).mkdir();
+	    					}
+	    					fileName=application.getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
 	    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
+
 	    					dfi.write(new File(fileName));
 	    				} //if
 	    			} //if
@@ -69,7 +74,7 @@
                     response.sendRedirect("manage.jsp");
                 }else{
                     session.setAttribute("manage_op_feedback","操作成功！");
-                    response.sendRedirect("ChatRoom.jsp");
+                    response.sendRedirect("ChatRoom.jsp?username="+username);
                 }
             }catch(java.sql.SQLException e){
                 out.println(e.toString());

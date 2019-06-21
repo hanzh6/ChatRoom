@@ -14,7 +14,17 @@
 	<div class="content">
 		<p class="subtitle pulse animated">聊天室</p>
 		<%
-			String Name = request.getParameter("username");
+			String Name = (String) request.getAttribute("username");
+			String fname=(String) request.getAttribute("filename");
+			String fileName = new String();
+			if(fname == null){
+				fileName=application.getRealPath("/js/theme/default/head_1.png");
+			}
+			else{
+				fileName=application.getRealPath("/file/")+(String) request.getAttribute("filename");
+			}
+			
+			
 			if(Name == null){
 				response.sendRedirect("login.jsp") ;
 				return ;
@@ -22,13 +32,14 @@
 			ArrayList names = (ArrayList) session.getAttribute("lognames");
 			String change_feedback = (String) session.getAttribute("change_feedback");
 		%>
+		
 		<div id="none" class="none">欢迎你</div>
 		<div id="none2" class="none">欢迎你</div>
 		<div id="none3" class="none"><%=change_feedback%></div>
 		<div class="main">
 			<div class="room">
 				<p class="cur_user">
-					欢迎您，<%=Name%></p>
+					欢迎您，<img src="<%=fileName%>" width="42" height="42"><%=Name%></p>
 				<input id="username" hidden="hidden" value=${username } type="text" />
 				<div class="record" id="record"></div>
 				<input type="text" style="display: none;" value="<%=Name%>"
@@ -49,7 +60,7 @@
 			</div>
 			<div class="change_btn">
 				<a type="submit" class="md-trigger" data-modal="modal-1">修改密码</a>
-                                <a type="submit" class="md-trigger" data-modal="change_info">修改个人信息</a>
+                <a type="submit" class="md-trigger" data-modal="change_info">修改个人信息</a>
 			</div>
 			<form action="out.jsp" method="post" id="out_form" class="top_form">
 				<input type="text" style="display: none;" value="<%=Name%>"
