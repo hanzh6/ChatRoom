@@ -14,7 +14,7 @@
 	<div class="content">
 		<p class="subtitle pulse animated">聊天室</p>
 		<%
-			String Name = (String) request.getAttribute("username");
+			String Name = (String) request.getParameter("username");
 			String fname=(String) request.getAttribute("filename");
 			String fileName = new String();
 			if(fname == null){
