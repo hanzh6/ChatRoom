@@ -15,4 +15,25 @@
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/ChatRoom/UploadServlet</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <display-name>Chat</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.chat.LoginServlet</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/ChatRoom/Chat</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+    <servlet-name>RoomUser</servlet-name>
+    <servlet-class>com.chat.RoomUser</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+    <servlet-name>RoomUser</servlet-name>
+    <url-pattern>/ChatRoom/RoomUser</url-pattern>
+  </servlet-mapping>
 </web-app>

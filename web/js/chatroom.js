@@ -19,20 +19,6 @@ $(function(){
     };
     var send_btn=$("#send_meg");
     var my_meg_input=$("textarea");
-    send_btn.click(function(){
-        if(my_meg_input.val()===""){
-            layer.msg('消息不能为空哦', {icon: 5});
-        }
-    });
-    function enter_sub(){//回车发送消息
-        my_meg_input.keydown(function(e){
-            if (e.keyCode===13){
-                send_btn.click();
-                return false;
-            }
-        });
-    };
-    enter_sub();//默认聚焦触发
     my_meg_input.focus(enter_sub());
 //    在线成员设置随机头像
     var head_urls=['./js/theme/default/head_1.png', './js/theme/default/head_2.png', './js/theme/default/head_3.png', './js/theme/default/head_4.png','./js/theme/default/head_5.png'];

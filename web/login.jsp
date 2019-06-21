@@ -13,7 +13,7 @@
     <body>
         <div class="content">
             <p class="subtitle pulse animated">聊天室</p>
-            <form method="post" action="ChatRoom.jsp" class="login_form">
+            <form method="post" action="Chat" class="login_form">
                 <div class="index-tab-nav clearfix fadeInDown animated">
                     <div class="nav-slider clearfix">
                         <input type="radio" name="identity" id="staff" value="staff" checked="checked">
