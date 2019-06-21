@@ -44,11 +44,11 @@
 				<div class="record" id="record"></div>
 				<input type="text" style="display: none;" value="<%=Name%>"
 					name="username">
-				<textarea rows="3" autofocus="autofocus" id="my_meg"
+				<textarea rows="3" autofocus="autofocus" id="my_meg" class="msg_input"
 					required="required"></textarea>
-				<div style="overflow: hidden;">
-					<button type="submit" id="send_meg">发送</button>
-					<button type="reset" id="send_reset">重置</button>
+				<div style="overflow: hidden;background-color:black;">
+					<button class="button1" type="submit" id="send_meg">发送</button>
+					<button class="button1" type="reset" id="send_reset">重置</button>
 				</div>
 			</div>
 			<div class="member">
@@ -65,13 +65,13 @@
 			<form action="out.jsp" method="post" id="out_form" class="top_form">
 				<input type="text" style="display: none;" value="<%=Name%>"
 					name="username">
-				<button type="submit" id="change">退出</button>
+				<button type="submit" id="change" class="md-trigger1">退出</button>
 			</form>
 			<form action="dispose.jsp" method="post" id="dispose_form"
 				class="top_form">
 				<input type="text" style="display: none;" value="<%=Name%>"
 					name="username">
-				<button type="submit" id="out">退出并销毁</button>
+				<button type="submit" id="out" class="md-trigger1">退出并销毁</button>
 			</form>
 		</div>
 	</div>
