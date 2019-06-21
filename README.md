@@ -61,4 +61,6 @@ String verify = request.getParameter("verify") ;
 
 			——czf
 ——————————————v5———————————————— 
+
 更新了changeinfo.jsp以及ChatRoom.jsp的内容，现在可以更新用户信息
+
