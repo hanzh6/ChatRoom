@@ -2,7 +2,7 @@
 多人聊天系统
 嗯
 
-——————————————v2————————————————
+——————————————v2————————————————  
 1.去掉文件开头注释、copyright；更改数据库连接。
 2.NewUser.jsp插入字段（23行）新增identity，默认插入staff组用户。
 3.数据库表新增id字段作为主键，相关文件进行简单调整。
@@ -10,7 +10,7 @@
 
 			——czf
 
-——————————————v3————————————————
+——————————————v3————————————————  
 1.输错密码以后，弹窗显示“密码不正确”，刷新页面仍然显示“密码不正确”。
 解决方法：客户端显示反馈信息以后就将其置为空。login.jsp中第54行<%=login_feedback %>后面新增代码
 <%session.setAttribute("login_feedback",""); %>
@@ -38,4 +38,25 @@ String verify = request.getParameter("verify") ;
 解决方法：ChangePass.jsp第30行增加代码session.setAttribute("haslog", "true") ;ChatRoom.jsp第66行增加代码if(session.getAttribute("haslog") == "true")
             	hasLog = true ;
 				
+			——czf
+			
+——————————————v4————————————————  
+1.chatroom.jsp增加
+	if(cur_Name==null){
+                        cur_Name="";
+                    }以免直接通过chatroom.jsp进入聊天室
+
+2.reset按钮失效
+新增js代码（164-166）：document.getElementById("send_reset").onclick=function(){
+		    	document.getElementById('my_meg').value = "" ;
+		    };
+
+3.reset、send之后光标置于文本框中新增代码document.getElementById("my_meg").focus();
+4.聊天内容太多不会自动换行
+128、160行增加代码max-width:500px;height:auto;word-break:break-all;
+
+5.聊天信息框内页面优化：新增chatroom.css新增.msgbox\.lbox\.rbox
+
+6.聊天信息框自动下拉：129、163行新增代码document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
+
 			——czf

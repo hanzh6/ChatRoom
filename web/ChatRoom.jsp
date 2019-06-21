@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
@@ -15,6 +15,10 @@
 		<p class="subtitle pulse animated">聊天室</p>
 		<%
 			String Name = request.getParameter("username");
+			if(Name == null){
+				response.sendRedirect("login.jsp") ;
+				return ;
+			}
 			ArrayList names = (ArrayList) session.getAttribute("lognames");
 			String change_feedback = (String) session.getAttribute("change_feedback");
 		%>
@@ -33,7 +37,7 @@
 					required="required"></textarea>
 				<div style="overflow: hidden;">
 					<button type="submit" id="send_meg">发送</button>
-					<button type="reset">重置</button>
+					<button type="reset" id="send_reset">重置</button>
 				</div>
 			</div>
 			<div class="member">
@@ -121,8 +125,8 @@
 		    }
 		    //接收到消息的回调方法
 		    websocket.onmessage = function (event) {
-		    	    document.getElementById('record').innerHTML+= "<p style='float:left'>"+event.data+"</p></br>";
-		        
+		    	    document.getElementById('record').innerHTML+= "<p class='msgbox lbox'>"+event.data+"</p></br>";
+			        document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
 		    }
 
 		    //连接关闭的回调方法
@@ -148,13 +152,19 @@
 		    	  var message = document.getElementById('my_meg').value;
 		    	  document.getElementById('my_meg').value="";
 		          if(message===""){
-		        	  alert('message')
+		        	    alert('message') ;
 			            layer.msg('消息不能为空哦', {icon: 5});
-			            return
+			            return ;
 			      }
 		          websocket.send(message);
-		          document.getElementById('record').innerHTML+= "<p style='float:right'>我说:"+message+"</p></br>";
-
+		          // document.getElementById('record').innerHTML+= "<p class='msgbox rbox'>我说:"+message+"</p></br>";
+		          document.getElementById('record').innerHTML+= "<p class='msgbox rbox'>我说:"+message+"</p>";
+		          document.getElementById("my_meg").focus();
+		          document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
+		    };
+		    document.getElementById("send_reset").onclick=function(){
+		    	document.getElementById('my_meg').value = "" ;
+		        document.getElementById("my_meg").focus();
 		    };
 	</script>
 </body>

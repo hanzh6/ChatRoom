@@ -139,3 +139,19 @@ textarea{
     position: absolute;
     bottom: 0;
 }
+.msgbox{
+	clear:both;
+	margin:4px 0 4px 0 ;
+	max-width:500px;
+	height:auto;
+	word-break:break-all;
+	border:1px black solid;
+	background-color:rgba(127,255,0,0.8);
+	border-radius:5px 5px 5px 5px;
+}
+.lbox{
+	float:left ;
+}
+.rbox{
+	float:right ;
+}
