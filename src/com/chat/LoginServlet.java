@@ -28,23 +28,26 @@ public class LoginServlet extends HttpServlet{
         ResultSet sqlRst=null;
         String promt=new String();
         String Name=new String();
+        String filename=new String();
+        String identity=new String();
 //        String userid=new String();
         String first="1";
         boolean hasLog=false;
         if(request.getParameter("username")!=null){
             Name=request.getParameter("username");
             String pass=request.getParameter("password");
-            String identity=request.getParameter("identity");
+            identity=request.getParameter("identity");
             try{
             	Class.forName("com.mysql.jdbc.Driver");
                 conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
-                preparedStmt=conn.prepareStatement("select username,password,identity from login where username=? and identity=?");
+                preparedStmt=conn.prepareStatement("select username,password,identity,filename from login where username=? and identity=?");
                 preparedStmt.setString(1,Name);
                 preparedStmt.setString(2,identity);
                 sqlRst=preparedStmt.executeQuery();
                 if(sqlRst.next()){
+                	filename = sqlRst.getString("filename");
                     if(!pass.equals( new String(sqlRst.getString("password")))){
-                        session.setAttribute("login_feedback","密码不正确！");
+                        session.setAttribute("login_feedback","瀵嗙爜涓嶆纭紒");
                         response.sendRedirect("login.jsp");
                         return ;
                     }else if(identity.equals("admin")){
@@ -56,7 +59,7 @@ public class LoginServlet extends HttpServlet{
 //                        userid=new String(sqlRst.getString("password"));
                     }
                 }else{
-                    session.setAttribute("login_feedback","当前账户不存在！");
+                    session.setAttribute("login_feedback","褰撳墠璐︽埛涓嶅瓨鍦紒");
                     response.sendRedirect("login.jsp");
                     return ;
                 }
@@ -87,12 +90,12 @@ public class LoginServlet extends HttpServlet{
             names=new ArrayList();
             names.add(Name);
             session.setAttribute("lognames",names);
-            promt="这是您第一次登录！";
+            promt="杩欐槸鎮ㄧ涓�娆＄櫥褰曪紒";
         }else{
             for(int i=0;i<names.size();i++){
                 String temp=(String)names.get(i);
                 if(Name.equals(temp)){
-                    promt="您已经登录过了！";
+                    promt="鎮ㄥ凡缁忕櫥褰曡繃浜嗭紒";
                     hasLog=true;
                     break;
                 }
@@ -100,10 +103,11 @@ public class LoginServlet extends HttpServlet{
             if(!hasLog){
                 names.add(Name);
                 session.setAttribute("lognames",names);
-                promt="这是您第一次登录";
+                promt="杩欐槸鎮ㄧ涓�娆＄櫥褰�";
             }
         }
         request.setAttribute("username",Name);
+        request.setAttribute("filename",filename);
 //        response.sendRedirect("ChatRoom.jsp");
         
         getServletContext().getRequestDispatcher("/ChatRoom.jsp").forward(
