@@ -60,3 +60,5 @@ String verify = request.getParameter("verify") ;
 6.聊天信息框自动下拉：129、163行新增代码document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
 
 			——czf
+——————————————v5———————————————— 
+更新了changeinfo.jsp以及ChatRoom.jsp的内容，现在可以更新用户信息
