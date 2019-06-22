@@ -188,6 +188,9 @@
 			            layer.msg('消息不能为空哦', {icon: 5});
 			            return ;
 			      }
+
+		          message = message.replace(/</g,"&lt;");
+				  message = message.replace(/>/g,"&gt;");
 		          websocket.send(message);
 		          // document.getElementById('record').innerHTML+= "<p class='msgbox rbox'>我说:"+message+"</p></br>";
 		          document.getElementById('record').innerHTML+= "<p class='msgbox rbox'>我说:"+message+"</p>";

@@ -78,7 +78,7 @@ public class ChatSocket {
 								+ name + " </li>");
 					} else {
 						str.append("<li>" + "<img src=" + GloableSetting.getPath() + "/file/" + filename
-								+ " alt=\"无\" +  style=\"width: 20px; height:2 0px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
+								+ " alt=\"无\" +  style=\"width: 20px; height:20px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
 								+ name + " </li>");
 					}
 				}
