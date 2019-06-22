@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet{
                         response.sendRedirect("login.jsp");
                         return ;
                     }else if(identity.equals("admin")){
-                        session.setAttribute("login_feedback","");
+                        session.setAttribute("manage_op_feedback","");
                         response.sendRedirect("manage.jsp?verify=ok");
                         return ;
                     }else{

@@ -25,7 +25,7 @@ $(function(){
                     $("#userid_wrap").css('display','none');
                     //动态更改弹出框的标题和form的接受文件
                     h3.text("修改用户信息");
-                    form.attr("action",'changeinfo.jsp');
+                    form.attr("action",'changeUser.jsp');
                     //自动填入信息
                     userid_inp.val(userid);
                     username_inp.val(username);

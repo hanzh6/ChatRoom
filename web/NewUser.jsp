@@ -33,7 +33,7 @@
                             response.sendRedirect("login.jsp");
                         }else{
                             session.setAttribute("manage_op_feedback","操作失败，请重试！");
-                            response.sendRedirect("manage.jsp");
+                            response.sendRedirect("manage.jsp?verify=ok");
                         }
                     }else{
                         if((requrl.indexOf("login.jsp"))!=-1){
@@ -41,7 +41,7 @@
                             response.sendRedirect("login.jsp");
                         }else{
                             session.setAttribute("manage_op_feedback","操作成功！");
-                            response.sendRedirect("manage.jsp");
+                            response.sendRedirect("manage.jsp?verify=ok");
                         }
                     }
                 }catch(java.sql.SQLException e){

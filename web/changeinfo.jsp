@@ -82,7 +82,7 @@
                 int uu=preparedStmt.executeUpdate();
                 if(uu==0){
                     session.setAttribute("manage_op_feedback","操作失败，请重试！");
-                    response.sendRedirect("manage.jsp");
+                    response.sendRedirect("manage.jsp?verify=ok");
                 }else{
                     session.setAttribute("manage_op_feedback","操作成功！");
                     out.println("操作成功！");

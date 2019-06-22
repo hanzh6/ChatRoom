@@ -72,7 +72,7 @@
                 <form action="NewUser.jsp" method="post">
                     <ul>
                         <li class="input-wrap" >
-                            <input required type="text" placeholder="用户名" name="username" pattern="w+" style="background-color:black;color:#d7b748;">
+                            <input required type="text" placeholder="用户名" name="username"  style="background-color:black;color:#d7b748;">
                         </li>
 <!--                    <li class="input-wrap">
                             <input required type="text" placeholder="手机号（用于找回密码）" name="phone"  style="background-color:black;color:#d7b748;">
