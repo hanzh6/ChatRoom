@@ -11,7 +11,6 @@ body {
 }
 body{
     min-height: 600px;
-    background: #f7fafc;
 }
 .none{
     display: none;
@@ -26,8 +25,8 @@ body{
     position: relative;
 }
 .subtitle{
-    color: #0F88EB;
-    font-size: 50px;
+    color: #d7b748;
+    font-size: 4.2em;
     font-family:'鐎瑰缍�';
     text-align: center;
     margin-bottom: 25px;
@@ -100,7 +99,7 @@ textarea{
 }
 
 .md-trigger,.md-trigger1{
-	background-color:black;
+	background-color:rgba(14, 37, 5, 0.3);
 	color:#26d717;
 }
 
@@ -211,7 +210,7 @@ textarea{
 .loading {
   position: absolute;
   right: 0px;
-  bottom: 60px;
+  bottom: 80px;
   width: 150px;
   height: 8px;
   background-color: #2bfd1d;
@@ -326,4 +325,8 @@ textarea{
     width: 52px;
     height: 52px;
   }
+}
+
+input::-webkit-input-placeholder{
+   color:#d7b748; 
 }

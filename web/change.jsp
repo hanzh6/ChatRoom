@@ -14,6 +14,18 @@
 		}
 		.input-wrap{
 			margin:20px 0 20px;
+			background-color:rgba(255,255,255,0.8);
+		}
+		.input-wrap input{
+			background-color:rgba(255,255,255,0.8);
+			color:black;
+		}
+		body{
+			background: url("./images/599133.jpg") no-repeat;
+			background-size: 100% 100%;
+		}
+		input::-webkit-input-placeholder{
+  			 color:#808080; 
 		}
 		</style>
     </head>
