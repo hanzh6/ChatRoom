@@ -55,9 +55,9 @@
 	    						new java.io.File(fileName).mkdir();
 	    					}
 	    					String type = FilenameUtils.getExtension(dfi.getName());
-	    					if (type.equals(".jpeg") || type.equals(".png") ||
-	    						type.equals(".jpg") || type.equals(".gif") || 
-	    						type.equals(".ico") ||type.equals(".bmp")){
+	    					if (type.equals("jpeg") || type.equals("png") ||
+	    						type.equals("jpg") || type.equals("gif") || 
+	    						type.equals("ico") ||type.equals("bmp")){
 	    						fileName=request.getServletContext().getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
 		    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
 		    					
