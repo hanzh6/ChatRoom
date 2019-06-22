@@ -54,10 +54,19 @@
 	    					if (!(new java.io.File(fileName).isDirectory())){
 	    						new java.io.File(fileName).mkdir();
 	    					}
-	    					fileName=request.getServletContext().getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
-	    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
-	    					System.out.println(filename);
-	    					dfi.write(new File(fileName));
+	    					String type = FilenameUtils.getExtension(dfi.getName());
+	    					if (type.equals(".jpeg") || type.equals(".png") ||
+	    						type.equals(".jpg") || type.equals(".gif") || 
+	    						type.equals(".ico") ||type.equals(".bmp")){
+	    						fileName=request.getServletContext().getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
+		    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
+		    					
+		    					dfi.write(new File(fileName));
+	    					}
+	    					else{
+	    						out.println("修改失败，头像类型只能是.jpeg, .png, .jpg, .gif, .ico, .bmp");
+	    						return;
+	    					}
 	    				} //if
 	    			} //if
 	    		} //for
