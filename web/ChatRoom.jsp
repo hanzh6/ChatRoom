@@ -24,7 +24,7 @@
 				fileName=GloableSetting.getPath()+("/js/theme/default/head_1.png");
 			}
 			else{
-				fileName=GloableSetting.getPath() + ("/file/")+(String) request.getAttribute("filename");
+				fileName=GloableSetting.getPath() + "/file/"+(String) request.getAttribute("filename");
 			}
 			
 			
@@ -63,8 +63,11 @@
 			</div>
 			<div class="change_btn">
 				<a type="submit" class="md-trigger" data-modal="modal-1">修改密码</a>
-                <a type="submit" class="md-trigger" data-modal="change_info">修改个人信息</a>
 			</div>
+			<form action="change.jsp" method="post" id="change_info" class="change_form" target="_blank">
+				<input type="text" style="display: none;" value="<%=Name%>" name="username">
+				<button type="submit" id="out">修改个人信息</button>
+			</form>
 			<form action="out.jsp" method="post" id="out_form" class="top_form">
 				<input type="text" style="display: none;" value="<%=Name%>"
 					name="username">
@@ -95,33 +98,6 @@
 				</div>
 			</form>
 		</div>
-	</div>
-        <div class="md-modal md-effect-1" id="change_info">
-            <div class="md-content">
-                <h3>修改个人信息</h3>
-                <form action="changeinfo.jsp" method="post"  enctype="multipart/form-data">
-                    <ul>
-                        <li class="input-wrap" style="display: none;">
-                            <input type="text" name="username" value="<%=Name%>">
-                        </li>
-                        <li class="input-wrap">
-                            <input required type="text" placeholder="昵称" name="nickname">
-                        </li>
-                        <li class="input-wrap">
-                            <input required type="text" placeholder="电话号码" name="phone_number">
-                        </li>
-                        <li class="input-wrap">
-                            <input required type="text" placeholder="签名" name="sign">
-                        </li>
-                        <li class="input-wrap">
-							头像<input type="file" name="file" id="file">
-						</li>
-                    </ul>
-                    <div class="exp-btn-group">
-                        <button type="submit" class="md-sub">确定</button>
-                    </div>
-                </form>
-            </div>
 	</div>
 	<div class="md-overlay"></div>
 	<canvas id="Mycanvas"

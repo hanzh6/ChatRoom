@@ -6,6 +6,7 @@
 <%@ page import="org.apache.commons.fileupload.*"%>
 <%@ page import="org.apache.commons.fileupload.disk.*"%>
 <%@ page import="org.apache.commons.fileupload.servlet.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,11 +50,11 @@
 	    				//如果是文件
 	    				DiskFileItem dfi = (DiskFileItem) fi;
 	    				if (!dfi.getName().trim().equals("")) {//getName()返回文件名称或空串
-	    					String fileName=application.getRealPath("/file/");
+	    					String fileName=request.getServletContext().getRealPath("/file/");
 	    					if (!(new java.io.File(fileName).isDirectory())){
 	    						new java.io.File(fileName).mkdir();
 	    					}
-	    					fileName=application.getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
+	    					fileName=request.getServletContext().getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
 	    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
 	    					System.out.println(filename);
 	    					dfi.write(new File(fileName));
@@ -75,7 +76,7 @@
                     response.sendRedirect("manage.jsp");
                 }else{
                     session.setAttribute("manage_op_feedback","操作成功！");
-                    response.sendRedirect("ChatRoom.jsp?username="+username);
+                    out.println("操作成功！");
                 }
             }catch(java.sql.SQLException e){
                 out.println(e.toString());
