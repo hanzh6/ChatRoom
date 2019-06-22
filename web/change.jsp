@@ -4,8 +4,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/modal.css" />
+		<link rel="stylesheet" href="./css/chatroom.css" />
+		<style>
+		#hahahaha{
+			padding: 50px;
+			width:600px;
+			margin:0 auto;
+		}
+		.input-wrap{
+			margin:20px 0 20px;
+		}
+		</style>
     </head>
     <body>
+          <div id="hahahaha">
                 <%
 			String Name = (String) request.getParameter("username");
 			
@@ -26,13 +39,14 @@
                             <input required type="text" placeholder="签名" name="sign">
                         </li>
                         <li class="input-wrap">
-							头像<input type="file" name="file" id="file">
+							选择头像<input  type="file" name="file" id="file">
 						</li>
                     </ul>
                     <div class="exp-btn-group">
                         <button type="submit" class="md-sub">确定</button>
                     </div>
                 </form>
+          </div>
          <!--默认打开login.jsp页面-->
     </body>
 </html>

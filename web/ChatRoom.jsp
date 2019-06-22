@@ -66,7 +66,7 @@
 			</div>
 			<form action="change.jsp" method="post" id="change_info" class="change_form" target="_blank">
 				<input type="text" style="display: none;" value="<%=Name%>" name="username">
-				<button type="submit" id="out">修改个人信息</button>
+				<button type="submit" style="background-color:black;color:#26d717;" id="out">修改个人信息</button>
 			</form>
 			<form action="out.jsp" method="post" id="out_form" class="top_form">
 				<input type="text" style="display: none;" value="<%=Name%>"
