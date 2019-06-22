@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <%@page import="java.sql.*"%>
 <%@ page import="java.io.*, java.util.*,org.apache.commons.io.*"%>
 <%@ page import="org.apache.commons.fileupload.*"%>
@@ -54,14 +55,14 @@
 	    					}
 	    					fileName=application.getRealPath("/file/") + username+"."+FilenameUtils.getExtension(dfi.getName());
 	    					filename = username+"."+FilenameUtils.getExtension(dfi.getName());
-
+	    					System.out.println(filename);
 	    					dfi.write(new File(fileName));
 	    				} //if
 	    			} //if
 	    		} //for
 	    	}  
             try{
-                conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                conn=GloableSetting.getDBConnect();
                 preparedStmt=conn.prepareStatement("update login set nickname=?,phone_number=?,sign=?,filename=? where username=?");
                 preparedStmt.setString(1,nickname);
                 preparedStmt.setString(2,phone_number);

@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.Set;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.util.*;
+import java.io.IOException;
+import java.sql.*;
+ 
 
 /**
  * @ServerEndpoint 注解标识该类是websocket类
@@ -28,7 +32,7 @@ public class ChatSocket {
 	 * 当有客户端与服务器建立连接时调用
 	 */
 	@OnOpen
-	public void onOpen(Session session) {
+	public void onOpen(Session session) throws ClassNotFoundException {
 		this.session = session;
 		try {
 			this.userName = URLDecoder.decode(session.getQueryString().substring(session.getQueryString().indexOf("=") + 1),"UTF-8");
@@ -36,18 +40,99 @@ public class ChatSocket {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		webSocketMap.put(this.userName, this); //加入用户姓名和此连接
-
+		webSocketMap.put(this.userName, this); 
+		Set<String> keys = webSocketMap.keySet();
+		Connection conn=null;
+		PreparedStatement preparedStmt=null;
+		ResultSet sqlRst=null;
+		Class.forName("com.mysql.jdbc.Driver");
+		try {
+			conn=GloableSetting.getDBConnect();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		StringBuffer str = new StringBuffer();
+		try {
+		for (String key : keys) {
+				preparedStmt=conn.prepareStatement("select filename,nickname from login where username=?");
+				preparedStmt.setString(1, key);
+				sqlRst=preparedStmt.executeQuery();
+				if(sqlRst.next()){
+					String filename;
+					String nickname;
+					try {
+						filename = new String(sqlRst.getString("filename"));
+					} catch (Exception e) {
+						filename = null;
+					}
+					try {
+						nickname = new String(sqlRst.getString("nickname"));
+					} catch (Exception e) {
+						nickname = null;
+					}
+					String name = nickname == null? key:nickname;
+					str.append("<li>"+ "<img src=" +GloableSetting.getPath()+"/file/" + filename + " alt=\"无\" +  style=\"width: 20px; height:2 0px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + name + " </li>");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (String key : keys) {
+			try {
+				webSocketMap.get(key).sendMessage("0_"+str);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				continue;
+			}
+		}
 		
 	}
 
 	/**
 	 *与服务器连接关闭时调用
+	 * @throws ClassNotFoundException 
 	 */
 	@OnClose
-	public void onClose() {
+	public void onClose() throws ClassNotFoundException {
 		webSocketMap.remove(this.userName);
-		
+		Set<String> keys = webSocketMap.keySet();
+		Connection conn=null;
+		PreparedStatement preparedStmt=null;
+		ResultSet sqlRst=null;
+		Class.forName("com.mysql.jdbc.Driver");
+		try {
+			conn=GloableSetting.getDBConnect();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		StringBuffer str = new StringBuffer();
+		try {
+		for (String key : keys) {
+				preparedStmt=conn.prepareStatement("select filename from login where username=?");
+				preparedStmt.setString(1, key);
+				sqlRst=preparedStmt.executeQuery();
+				if(sqlRst.next()){
+					String filename = new String(sqlRst.getString("filename"));
+					str.append("<li>"+"<img src=\"/file/" + filename +"\" alt=\"无\"  style=\"width: 10px; height:10px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + key + " </li>");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (String key : keys) {
+			try {
+				webSocketMap.get(key).sendMessage("0_"+str);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				continue;
+			}
+		}
 	}
 
 	/**
@@ -67,12 +152,11 @@ public class ChatSocket {
 			e1.printStackTrace();
 		}
 	
-		// Ⱥ����Ϣ
 		Set<String> keys = webSocketMap.keySet();
 		for (String key : keys) {
 			if (!key.equals(messageUser)) {
 				try {
-					webSocketMap.get(key).sendMessage(messageUser+"说："+message);
+					webSocketMap.get(key).sendMessage("1_"+messageUser+"说："+message);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

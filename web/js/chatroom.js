@@ -19,7 +19,6 @@ $(function(){
     };
     var send_btn=$("#send_meg");
     var my_meg_input=$("textarea");
-    my_meg_input.focus(enter_sub());
 //    在线成员设置随机头像
     var head_urls=['./js/theme/default/head_1.png', './js/theme/default/head_2.png', './js/theme/default/head_3.png', './js/theme/default/head_4.png','./js/theme/default/head_5.png'];
     var member_lis=$(".member_li");

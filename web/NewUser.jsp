@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
                 String password=request.getParameter("password");
                 try{
                 	Class.forName("com.mysql.jdbc.Driver");
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                    conn=GloableSetting.getDBConnect();
                     preparedStmt=conn.prepareStatement("insert into login(identity,username,password)value(?,?,?)");
                     preparedStmt.setString(1,"staff");
                     preparedStmt.setString(2,Name);

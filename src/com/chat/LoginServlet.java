@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet{
             identity=request.getParameter("identity");
             try{
             	Class.forName("com.mysql.jdbc.Driver");
-                conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                conn=GloableSetting.getDBConnect();
                 preparedStmt=conn.prepareStatement("select username,password,identity,filename from login where username=? and identity=?");
                 preparedStmt.setString(1,Name);
                 preparedStmt.setString(2,identity);

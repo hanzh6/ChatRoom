@@ -1,5 +1,8 @@
+<%@page import="com.chat.GloableSetting"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html; charset=utf-8" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
@@ -18,10 +21,10 @@
 			String fname=(String) request.getAttribute("filename");
 			String fileName = new String();
 			if(fname == null){
-				fileName=application.getRealPath("/js/theme/default/head_1.png");
+				fileName=GloableSetting.getPath()+("/js/theme/default/head_1.png");
 			}
 			else{
-				fileName=application.getRealPath("/file/")+(String) request.getAttribute("filename");
+				fileName=GloableSetting.getPath() + ("/file/")+(String) request.getAttribute("filename");
 			}
 			
 			
@@ -52,7 +55,7 @@
 				</div>
 			</div>
 			<div class="member">
-				<h4 style="font-size: 15px; font-weight: 400;">
+				<h4 id="userNum" style="font-size: 15px; font-weight: 400;">
 					当前在线人数：<%=names.size()%></h4>
 				<ul id = "userlist">
 					
@@ -128,26 +131,27 @@
 	<script src="./js/layer.js"></script>
 	<script src="./js/chatroom.js"></script>
 	<script type="text/javascript">
-		setInterval("getuser()", 500)
-		function getuser() {
-			$.ajax({
-				type:'get',
-				url:'RoomUser',
-				async:false,
-				error:function(data){
-					alert('发生错误');
-				},
-				success:function(data){
-					$('#userlist').html(data);
-				}
+		// setInterval("getuser()", 1000)
+		// function getuser() {
+		// 	$.ajax({
+		// 		type:'get',
+		// 		url:'RoomUser',
+		// 		async:false,
+		// 		error:function(data){
+		// 			alert('发生错误');
+		// 		},
+		// 		success:function(data){
+		// 			console.log(data);
+		// 			$('#userlist').html(data);
+		// 		}
 				
-			});
-		}
+		// 	});
+		// }
 		 var websocket = null;
 		    var userName =document.getElementById('username').value;
 		    //判断当前浏览器是否支持WebSocket
 		    if ('WebSocket' in window) {
-		        websocket = new WebSocket("ws://localhost:8080/ChatRoom/websocket?username="+userName);
+		        websocket = new WebSocket("<%=GloableSetting.getSocket()%>"+ "/websocket?username="+userName);
 		    }
 		    else {
 		        alert('当前浏览器 Not support websocket')
@@ -164,8 +168,16 @@
 		    }
 		    //接收到消息的回调方法
 		    websocket.onmessage = function (event) {
-		    	    document.getElementById('record').innerHTML+= "<p class='msgbox lbox'>"+event.data+"</p></br>";
-			        document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
+					var data = event.data;
+					if (data[0] === '1'){
+						document.getElementById('record').innerHTML+= "<p class='msgbox lbox'>"+data.slice(2)+"</p></br>";
+						document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
+					} else {
+						var data = data.slice(2);
+						$('#userlist').html(data);
+						var size = document.getElementById('userlist').children.length;
+						document.getElementById('userNum').innerText = "当前在线人数:"+size;
+					}
 		    }
 
 		    //连接关闭的回调方法
@@ -191,7 +203,6 @@
 		    	  var message = document.getElementById('my_meg').value;
 		    	  document.getElementById('my_meg').value="";
 		          if(message===""){
-		        	    alert('message') ;
 			            layer.msg('消息不能为空哦', {icon: 5});
 			            return ;
 			      }

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
                 ResultSet sqlRst=null;
                 PreparedStatement preparedStmt=null;
                 try{
-                    conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                    conn=GloableSetting.getDBConnect();
                     preparedStmt=conn.prepareStatement("select id,username,password from login where identity='staff'");
                     sqlRst=preparedStmt.executeQuery();
                     while(sqlRst.next()){

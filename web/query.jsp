@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@page import="java.util.*"%>
+<%@page import="com.chat.GloableSetting"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@
             String username=request.getParameter("username");
             String userpass=request.getParameter("password");
             try{
-                conn=java.sql.DriverManager.getConnection("jdbc:mysql://172.18.187.10:3306/16337074_chat","user","123");
+                conn=GloableSetting.getDBConnect();
                 StringBuilder sql=new StringBuilder("select * from login where 1=1");
                 if(!userid.isEmpty()){
 			sql.append(" and id like '%"+userid+"%' ");
