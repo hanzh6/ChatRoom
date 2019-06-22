@@ -20,7 +20,7 @@ public class ChatSocket {
 
    //将用户的名字和每个websocket连接存在map集合中，static修饰，其他类可以直接调用
 	private static HashMap<String, ChatSocket> webSocketMap = new HashMap<String, ChatSocket>();
-
+	private static HashMap<String, String> nickNameMap = new HashMap<String, String>();
    //session保存用户请求过来的信息
 	private Session session;
 	private String userName;
@@ -72,6 +72,7 @@ public class ChatSocket {
 						nickname = null;
 					}
 					String name = nickname == null? key:nickname;
+					nickNameMap.put(key, name);
 					str.append("<li>"+ "<img src=" +GloableSetting.getPath()+"/file/" + filename + " alt=\"无\" +  style=\"width: 20px; height:2 0px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + name + " </li>");
 				}
 			}
@@ -156,7 +157,7 @@ public class ChatSocket {
 		for (String key : keys) {
 			if (!key.equals(messageUser)) {
 				try {
-					webSocketMap.get(key).sendMessage("1_"+messageUser+"说："+message);
+					webSocketMap.get(key).sendMessage("1_"+nickNameMap.get(messageUser)+"说："+message);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

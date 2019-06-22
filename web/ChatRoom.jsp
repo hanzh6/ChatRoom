@@ -175,10 +175,11 @@
 		    function closeWebSocket() {
 		        websocket.close();
 		    }
-		    document.getElementById("send_meg").onclick=function(){
+		    document.getElementById("send_meg").onclick=sendMessage;
+		    function sendMessage () {
 		    	  var message = document.getElementById('my_meg').value;
 		    	  document.getElementById('my_meg').value="";
-		          if(message===""){
+		          if(message==="" || message==='\n' ){
 			            layer.msg('消息不能为空哦', {icon: 5});
 			            return ;
 			      }
@@ -188,6 +189,14 @@
 		          document.getElementById("my_meg").focus();
 		          document.getElementById('record').scrollTop = document.getElementById('record').scrollHeight ;
 		    };
+		    document.onkeydown = function (e) { // 回车提交表单
+		    	// 兼容FF和IE和Opera
+		    	    var theEvent = window.event || e;
+		    	    var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+		    	    if (code == 13) {
+		    	    	sendMessage();
+		    	    }
+		    	}
 		    document.getElementById("send_reset").onclick=function(){
 		    	document.getElementById('my_meg').value = "" ;
 		        document.getElementById("my_meg").focus();
