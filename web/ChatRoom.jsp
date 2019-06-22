@@ -12,10 +12,17 @@
 <title>聊天室</title>
 <link rel="stylesheet" href="./css/modal.css" />
 <link rel="stylesheet" href="./css/chatroom.css" />
+<style>
+body{
+    min-height: 600px;
+    background: url("./images/25422.jpg") no-repeat;
+	background-size: 100% 100%;
+}
+</style>
 </head>
 <body>
 	<div class="content">
-		<p class="subtitle pulse animated">聊天室</p>
+		<p class="subtitle pulse animated">VALUT-TEC</p>
 		<%
 			String Name = (String) request.getParameter("username");
 			String fname=(String) request.getAttribute("filename");
@@ -87,16 +94,16 @@
 		</div>
 	</div>
 	<div class="md-modal md-effect-1" id="modal-1">
-		<div class="md-content">
-			<h3>修改密码</h3>
+		<div class="md-content" style="background-color:#d7b748;">
+			<h3  style="background-color:#d7b748;color:black;">修改密码</h3>
 			<form action="ChangePass.jsp" method="post">
 				<ul>
 					<li class="input-wrap" style="display: none;"><input
-						type="text" name="username" value="<%=Name%>"></li>
+						type="text" name="username" value="<%=Name%>"  style="background-color:black;color:#d7b748;"></li>
 					<li class="input-wrap"><input required type="text"
-						placeholder="原始密码" name="old_password"></li>
+						placeholder="原始密码" name="old_password"  style="background-color:black;color:#d7b748;"></li>
 					<li class="input-wrap"><input required type="password"
-						placeholder="新密码" name="new_password"></li>
+						placeholder="新密码" name="new_password"  style="background-color:black;color:#d7b748;"></li>
 				</ul>
 				<div class="exp-btn-group">
 					<button type="submit" class="md-sub">确定</button>
