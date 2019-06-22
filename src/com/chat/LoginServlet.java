@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet{
         Connection conn=null;
         PreparedStatement preparedStmt=null;
         ResultSet sqlRst=null;
-        String promt=new String();
         String Name=new String();
         String filename=new String();
         String identity=new String();
@@ -47,7 +46,7 @@ public class LoginServlet extends HttpServlet{
                 if(sqlRst.next()){
                 	filename = sqlRst.getString("filename");
                     if(!pass.equals( new String(sqlRst.getString("password")))){
-                        session.setAttribute("login_feedback","瀵嗙爜涓嶆纭紒");
+                        session.setAttribute("login_feedback","password verify fail");
                         response.sendRedirect("login.jsp");
                         return ;
                     }else if(identity.equals("admin")){
@@ -59,7 +58,7 @@ public class LoginServlet extends HttpServlet{
 //                        userid=new String(sqlRst.getString("password"));
                     }
                 }else{
-                    session.setAttribute("login_feedback","褰撳墠璐︽埛涓嶅瓨鍦紒");
+                    session.setAttribute("login_feedback","user not exist");
                     response.sendRedirect("login.jsp");
                     return ;
                 }
@@ -90,12 +89,10 @@ public class LoginServlet extends HttpServlet{
             names=new ArrayList();
             names.add(Name);
             session.setAttribute("lognames",names);
-            promt="杩欐槸鎮ㄧ涓�娆＄櫥褰曪紒";
         }else{
             for(int i=0;i<names.size();i++){
                 String temp=(String)names.get(i);
                 if(Name.equals(temp)){
-                    promt="鎮ㄥ凡缁忕櫥褰曡繃浜嗭紒";
                     hasLog=true;
                     break;
                 }
@@ -103,7 +100,7 @@ public class LoginServlet extends HttpServlet{
             if(!hasLog){
                 names.add(Name);
                 session.setAttribute("lognames",names);
-                promt="杩欐槸鎮ㄧ涓�娆＄櫥褰�";
+               
             }
         }
         request.setAttribute("username",Name);
