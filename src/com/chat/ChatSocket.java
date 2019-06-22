@@ -74,7 +74,7 @@ public class ChatSocket {
 					nickNameMap.put(key, name);
 					if (filename == null) {
 						str.append("<li>"
-								+ "<img src=\"/js/theme/default/head_1.png\" alt=\"无\"  style=\"width: 10px; height:10px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
+								+ "<img src=" + GloableSetting.getPath()+ "/js/theme/default/head_1.png" + " alt=\"无\"  style=\"width: 20px; height:20px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
 								+ name + " </li>");
 					} else {
 						str.append("<li>" + "<img src=" + GloableSetting.getPath() + "/file/" + filename
@@ -121,14 +121,33 @@ public class ChatSocket {
 		StringBuffer str = new StringBuffer();
 		try {
 			for (String key : keys) {
-				preparedStmt = conn.prepareStatement("select filename from login where username=?");
+				preparedStmt = conn.prepareStatement("select filename,nickname from login where username=?");
 				preparedStmt.setString(1, key);
 				sqlRst = preparedStmt.executeQuery();
 				if (sqlRst.next()) {
-					String filename = new String(sqlRst.getString("filename"));
-					str.append("<li>" + "<img src=\"/file/" + filename
-							+ "\" alt=\"无\"  style=\"width: 10px; height:10px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
-							+ key + " </li>");
+					String filename;
+					String nickname;
+					try {
+						filename = new String(sqlRst.getString("filename"));
+					} catch (Exception e) {
+						filename = null;
+					}
+					try {
+						nickname = new String(sqlRst.getString("nickname"));
+					} catch (Exception e) {
+						nickname = null;
+					}
+					String name = nickname == null ? key : nickname;
+					nickNameMap.put(key, name);
+					if (filename == null) {
+						str.append("<li>"
+								+ "<img src=" + GloableSetting.getPath()+ "/js/theme/default/head_1.png" + " alt=\"无\"  style=\"width: 20px; height:20px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
+								+ name + " </li>");
+					} else {
+						str.append("<li>" + "<img src=" + GloableSetting.getPath() + "/file/" + filename
+								+ " alt=\"无\" +  style=\"width: 20px; height:2 0px; border-radius:100%; border:solid 1px black; font-size:2px;\">"
+								+ name + " </li>");
+					}
 				}
 			}
 		} catch (SQLException e) {
