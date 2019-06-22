@@ -74,7 +74,6 @@ and open the template in the editor.
     font-size: 14px;
     border: 0;
     box-sizing: border-box;
-    background-color: #fff;
     padding:1em 0.8em;
 }
 .exp-btn-group {
@@ -98,14 +97,11 @@ button{
     font-size: 15px;
     border-radius: 3px;
     line-height: 40px;
-    color: #fff;
+    color: #d7b748;
 }
 .md-sub{
     width: 100%;
-    background: #0f88eb;
-}
-.md-sub:hover{
-    background: #55abed;
+    background: black;
 }
 .md-effect-1 .md-content {
     -webkit-transform: scale(0.7);
