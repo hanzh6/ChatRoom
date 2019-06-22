@@ -73,7 +73,12 @@ public class ChatSocket {
 					}
 					String name = nickname == null? key:nickname;
 					nickNameMap.put(key, name);
-					str.append("<li>"+ "<img src=" +GloableSetting.getPath()+"/file/" + filename + " alt=\"无\" +  style=\"width: 20px; height:2 0px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + name + " </li>");
+					if(filename == null) {
+						str.append("<li>"+"<img src=\"/js/theme/default/head_1.png\" alt=\"无\"  style=\"width: 10px; height:10px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + name + " </li>");
+					}
+					else {
+						str.append("<li>"+"<img src=\"/file/" + filename +"\" alt=\"无\"  style=\"width: 10px; height:10px; border-radius:100%; border:solid 1px black; font-size:2px;\">" + name + " </li>");
+					}
 				}
 			}
 		} catch (SQLException e) {

@@ -40,6 +40,7 @@
 		<div id="none2" class="none">欢迎你</div>
 		<div id="none3" class="none"><%=change_feedback%></div>
 		<div class="main">
+			<div class="scan"></div>
 			<div class="room">
 				<p class="cur_user">
 					欢迎您，<img src="<%=fileName%>" width="42" height="42"><%=Name%></p>
@@ -60,6 +61,10 @@
 				<ul id = "userlist">
 					
 				</ul>
+				<div class="loading">
+					<div class="circle"></div>
+					<div class="dot"></div>
+				</div>
 			</div>
 			<div class="change_btn">
 				<a type="submit" class="md-trigger" data-modal="modal-1">修改密码</a>
